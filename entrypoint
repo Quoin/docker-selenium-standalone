@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export DISPLAY=:99
+/usr/bin/Xorg +extension GLX +extension RANDR +extension RENDER -config /etc/X11/xorg.conf $DISPLAY &
+startfluxbox &
+x11vnc -display $DISPLAY -N -forever -rfbport 5900 > /tmp/vnc.log 2>&1 &
+
+if [[ -z $1 ]]
+then
+  echo 'Starting Selenium Standalone...'
+  exec java -jar /opt/selenium-standalone.jar -port 4444 -host 0.0.0.0
+else
+  exec $@
+fi
