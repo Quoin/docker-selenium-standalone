@@ -7,7 +7,7 @@ x11vnc -display $DISPLAY -N -forever -rfbport 5900 > /tmp/vnc.log 2>&1 &
 
 if [[ -z $1 ]]
 then
-  echo 'Starting Selenium Standalone...'
+  echo 'Starting Selenium Standalone with Xvfb'
   exec java -jar /opt/selenium-standalone.jar -port 4444 -host 0.0.0.0
 else
   exec $@
