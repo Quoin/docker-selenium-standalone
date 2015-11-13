@@ -2,6 +2,13 @@
 
 export DISPLAY=:99
 /usr/bin/Xorg +extension GLX +extension RANDR +extension RENDER -config /etc/X11/xorg.conf $DISPLAY &
+
+# Wait for X to start up fully
+while ! xset q
+do
+  sleep 0.1
+done
+
 startfluxbox &
 x11vnc -display $DISPLAY -N -forever -rfbport 5900 -passwd password > /tmp/vnc.log 2>&1 &
 
