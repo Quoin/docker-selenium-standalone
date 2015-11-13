@@ -3,7 +3,7 @@
 export DISPLAY=:99
 /usr/bin/Xorg +extension GLX +extension RANDR +extension RENDER -config /etc/X11/xorg.conf $DISPLAY &
 startfluxbox &
-x11vnc -display $DISPLAY -N -forever -rfbport 5900 > /tmp/vnc.log 2>&1 &
+x11vnc -display $DISPLAY -N -forever -rfbport 5900 -passwd password > /tmp/vnc.log 2>&1 &
 
 if [[ -z $1 ]]
 then
